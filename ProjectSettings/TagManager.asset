@@ -41,12 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 3983736215
+  - name: BackGround
+    uniqueID: 854084539
+    locked: 0
+  - name: Plants
+    uniqueID: 584322401
+    locked: 0
+  - name: Platforms
+    uniqueID: 4149668009
     locked: 0
   - name: Coins
     uniqueID: 4025583225
     locked: 0
   - name: Enemy
     uniqueID: 496984649
+    locked: 0
+  - name: Player
+    uniqueID: 3983736215
     locked: 0
