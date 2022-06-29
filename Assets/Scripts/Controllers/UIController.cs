@@ -4,15 +4,52 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject gamePanel;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject losePanel;
+
+    private GameObject _currentPanel;
+
+    private void EnableCurrentPanel()
     {
-        
+        if (_currentPanel == null) return;
+
+        _currentPanel.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DisableCurrentPanel()
     {
-        
+        if (_currentPanel == null) return;
+
+        _currentPanel.SetActive(false);
+    }
+
+    public void ShowsStartPanel()
+    {
+        DisableCurrentPanel();
+        _currentPanel = startPanel;
+        EnableCurrentPanel();
+    }
+
+    public void ShowsGamePanel()
+    {
+        DisableCurrentPanel();
+        _currentPanel = gamePanel;
+        EnableCurrentPanel();
+    }
+
+    public void ShowsWinPanel()
+    {
+        DisableCurrentPanel();
+        _currentPanel = winPanel;
+        EnableCurrentPanel();
+    }
+
+    public void ShowsLosePanel()
+    {
+        DisableCurrentPanel();
+        _currentPanel = losePanel;
+        EnableCurrentPanel();
     }
 }
