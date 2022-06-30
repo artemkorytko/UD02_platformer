@@ -1,56 +1,57 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Enemy
+public class EnemyMovement : MonoBehaviour
 {
-    public class EnemyMovement : BaseMovement
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private Transform _firstPoint = null;
+    [SerializeField] private Transform _secondPoint = null;
+    [SerializeField] private Transform _startTarget = null;
+
+    private Transform _target = null;
+    private EnemyAnimationController _animationController = null;
+
+    private void Start()
     {
-        [SerializeField] private Transform startPosition;
-        [SerializeField] private Transform targetPosition;
+        _target = _startTarget;
+        _animationController = GetComponent<EnemyAnimationController>();
+    }
 
-        private Transform _currentTarget;
+    private void Update()
+    {
+        Vector3 direction = (_target.position - transform.position).normalized;
+        float moveDistance = _speed * Time.deltaTime;
+        float distanceToTarget = Vector3.Distance(_target.position, transform.position);
 
-        protected override void Start()
+        if (moveDistance > distanceToTarget)
         {
-            base.Start();
-            _currentTarget = targetPosition;
-        }
+            moveDistance = distanceToTarget;
 
-        protected override void Movement()
-        {
-            Vector2 direction = (_currentTarget.position - transform.position).normalized;
-            float moveDistance = speed * Time.deltaTime;
-            float distanceToTarget = Vector2.Distance(_currentTarget.position, transform.position);
-
-            if (moveDistance > distanceToTarget)
+            if (_target == _firstPoint)
             {
-                moveDistance = distanceToTarget;
-
-                if (_currentTarget == targetPosition)
-                {
-                    _currentTarget = startPosition;
-                }
-                else
-                {
-                    _currentTarget = targetPosition;
-                }
+                _target = _secondPoint;
             }
-
-            transform.Translate(direction * moveDistance);
-            _animationController.SetSpeedDirection((int) Mathf.Sign(direction.x));
-
-            UpdateSide((int) Mathf.Sign(direction.x));
-        }
-
-        private void UpdateSide(int side)
-        {
-            Vector2 localScale = transform.localScale;
-
-            if (Mathf.Sign(localScale.x) != side)
+            else
             {
-                localScale.x *= -1;
+                _target = _firstPoint;
             }
-
-            transform.localScale = localScale;
         }
+
+        transform.Translate(direction * moveDistance);
+        _animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
+        UpdateSide((int)Mathf.Sign(direction.x));
+    }
+
+    private void UpdateSide(int side)
+    {
+        Vector3 localScale = transform.localScale;
+
+        if (Mathf.Sign(localScale.x) != side)
+        {
+            localScale.x *= -1f;
+        }
+
+        transform.localScale = localScale;
     }
 }

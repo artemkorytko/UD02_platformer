@@ -1,9 +1,19 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Enemy
+public class EnemyAnimationController : MonoBehaviour
 {
-    public class EnemyAnimationController : BaseAnimationController
+    private const string _speedKey = "SpeedInt";
+    private Animator _animator = null;
+
+    protected void Start()
     {
-        
+        _animator = GetComponent<Animator>();
+    }
+
+    public virtual void SetSpeedDirection(int value)
+    {
+        _animator.SetInteger(_speedKey, value);
     }
 }

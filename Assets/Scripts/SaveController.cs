@@ -1,41 +1,33 @@
-using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer
+public class SaveController : MonoBehaviour
 {
-    public class SaveController : MonoBehaviour
+    private const string _dataKey = "GAME_DATA";
+
+    public GameData LoadData()
     {
-        private const string SAVE_KEY = "GameData";
-
-        public void SaveData(GameData data)
+        if (PlayerPrefs.HasKey(_dataKey))
         {
-            string json = JsonUtility.ToJson(data);
-            PlayerPrefs.SetString(SAVE_KEY, json);
+            return JsonUtility.FromJson<GameData>(PlayerPrefs.GetString(_dataKey));
         }
-
-        public GameData LoadData()
+        else
         {
-            if (PlayerPrefs.HasKey(SAVE_KEY))
-            {
-                return JsonUtility.FromJson<GameData>(PlayerPrefs.GetString(SAVE_KEY));
-            }
-            else
-            {
-                return new GameData();
-            }
-        }
-
-        public GameData GameData
-        {
-            get => JsonUtility.FromJson<GameData>(PlayerPrefs.GetString(SAVE_KEY, JsonUtility.ToJson(new GameData())));
-            set => PlayerPrefs.SetString(SAVE_KEY, JsonUtility.ToJson(value));
+            return new GameData();
         }
     }
 
-    [Serializable]
-    public class GameData
+    public void SaveData(GameData data)
     {
-        public int Coins = 0;
-        public int Level = 0;
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString(_dataKey, json);
     }
+}
+
+[System.Serializable]
+public class GameData
+{
+    public int Coins = 0;
+    public int Level = 0;
 }

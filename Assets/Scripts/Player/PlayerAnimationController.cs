@@ -1,17 +1,31 @@
-using Platformer.Enemy;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Player
+public class PlayerAnimationController : MonoBehaviour
 {
-    public class PlayerAnimationController : BaseAnimationController
+    private const string _speedKey = "SpeedInt";
+    private const string _jumpKey = "Jump";
+    private const string _deadKey = "Dead";
+    private Animator _animator = null;
+
+    protected void Start()
     {
-        private const string JUMP = "Jump";
+        _animator = GetComponent<Animator>();
+    }
 
-        private static readonly int Jump = Animator.StringToHash(JUMP);
+    public void SetSpeedDirection(int value)
+    {
+        _animator.SetInteger(_speedKey, value);
+    }
 
-        public void DoJump()
-        {
-            _animator.SetTrigger(Jump);
-        }
+    public void SetJump()
+    {
+        _animator.SetTrigger(_jumpKey);
+    }
+
+    public void SetDead()
+    {
+        _animator.SetBool(_deadKey, true);
     }
 }

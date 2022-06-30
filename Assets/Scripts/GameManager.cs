@@ -1,69 +1,70 @@
-using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer
+public class GameManager : MonoBehaviour
 {
-    public class GameManager : MonoBehaviour
+    [SerializeField] private UIController _uiController = null;
+    [SerializeField] private LevelManager _levelManager = null;
+    [SerializeField] private SaveController _saveController = null;
+    [SerializeField] private CameraMovement _cameraMovement = null;
+
+    private GameData _gameData = null;
+
+    public int LevelIdex => _gameData.Level;
+    public int Coins => _gameData.Coins;
+    public System.Action<int> OnCoinCountChanged = null;
+
+    private void Awake()
     {
-        private UiController _uiController;
-        private LevelManager _levelManager;
-        private SaveController _saveController;
-        private CameraController _cameraMovement;
+        _gameData = _saveController.LoadData();
+        _uiController.ShowStartScreen();
+    }
 
-        private GameData _gameData;
+    public void StartGame()
+    {
+        _levelManager.InstantiateLevel(_gameData.Level);
+        _uiController.ShowGameScreen();
+        OnGameStarted();
+    }
 
-        public event Action<int> OnCoinCountChanged;
+    public void WinGame()
+    {
+        _gameData.Level++;
+        _uiController.ShowWinScreen();
+        OnGameEnded();
+    }
 
-        private void Awake()
-        {
-            _gameData = _saveController.LoadData();
-            _uiController.ShowStartPanel();
-        }
+    public void FailGame()
+    {
+        _uiController.ShowFailScreen();
+        OnGameEnded();
+    }
 
-        private void OnDestroy()
-        {
-            _saveController.SaveData(_gameData);
-        }
+    private  void OnGameStarted()
+    {
+        _cameraMovement.Initialize(_levelManager.Player.transform);
+        _levelManager.Player.OnWin += WinGame;
+        _levelManager.Player.OnDead += FailGame;
+        _levelManager.Player.OnCoinCollected += OnCoinCollected;
+    }
 
-        public void StartGame()
-        {
-            _levelManager.InstantiateLevel(_gameData.Level);
-            _uiController.ShowGamePanel();
-            OnGameStarted();
-        }
+    private void OnGameEnded()
+    {
+        _levelManager.Player.OnWin -= WinGame;
+        _levelManager.Player.OnDead -= FailGame;
+        _levelManager.Player.OnCoinCollected -= OnCoinCollected;
+        _saveController.SaveData(_gameData);
+    }
 
-        private void OnGameStarted()
-        {
-            _cameraMovement.Initialize(_levelManager.Player.transform);
-            _levelManager.Player.OnWin += WinGame;
-            _levelManager.Player.OnDead += FailGame;
-            _levelManager.Player.OnCoinCollected += OnCoinCollected;
-        }
+    private void OnCoinCollected()
+    {
+        _gameData.Coins++;
+        OnCoinCountChanged?.Invoke(_gameData.Coins);
+    }
 
-        private void OnGameEnded()
-        {
-            _levelManager.Player.OnWin -= WinGame;
-            _levelManager.Player.OnDead -= FailGame;
-            _levelManager.Player.OnCoinCollected -= OnCoinCollected;
-        }
-
-        private void WinGame()
-        {
-            _gameData.Level++;
-            _uiController.ShowWinPanel();
-            OnGameEnded();
-        }
-
-        private void FailGame()
-        {
-            _uiController.ShowLostPanel();
-            OnGameEnded();
-        }
-
-        private void OnCoinCollected()
-        {
-            _gameData.Coins++;
-            OnCoinCountChanged?.Invoke(_gameData.Coins);
-        }
+    private void OnApplicationQuit()
+    {
+        _saveController.SaveData(_gameData);
     }
 }
