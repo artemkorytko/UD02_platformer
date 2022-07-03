@@ -19,6 +19,17 @@ namespace Manager
         }
 
         protected abstract void Movement();
+        
+        protected void UpdateSide(int side)
+        {
+            Vector2 localScale = transform.localScale;
+            if (Mathf.Sign(localScale.x) != side)
+            {
+                localScale.x *= -1f;
+            }
+
+            transform.localScale = localScale;
+        }
     }
 }
 
