@@ -11,7 +11,8 @@ namespace Manager
         private CameraController _cameraController;
         
         private GameData _gameData;
-
+        public int LevelIdex => _gameData.Level;
+        public int Coins => _gameData.Coins;
         public event Action<int> OnCoinCountChanged;
 
         private void Awake()
