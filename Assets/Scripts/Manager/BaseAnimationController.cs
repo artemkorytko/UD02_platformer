@@ -4,7 +4,7 @@ namespace Manager
 {
     public abstract class BaseAnimationController : MonoBehaviour
     {
-        private const string SPEED = "Speed";
+        private const string SPEED = "Run";
         private const string DEATH = "Death";
 
         private static readonly int Speed = Animator.StringToHash(SPEED);

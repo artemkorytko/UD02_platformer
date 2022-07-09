@@ -1,11 +1,12 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 namespace Manager
 {
     public class UICoinText : MonoBehaviour
     {
-        [SerializeField] private Text _text = null;
+        [SerializeField] private TextMeshProUGUI _text = null;
 
         public void UpdateText(int count)
         {

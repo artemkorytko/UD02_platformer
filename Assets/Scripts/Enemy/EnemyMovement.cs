@@ -42,7 +42,7 @@ namespace Enemy
             UpdateSide((int)Mathf.Sign(direction.x));
         }
 
-        private void UpdateSide(int side)
+        private  void UpdateSide(int side)
         {
             Vector2 localScale = transform.localScale;
 

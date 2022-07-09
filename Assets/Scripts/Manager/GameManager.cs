@@ -5,10 +5,10 @@ namespace Manager
 {
     public class GameManager : MonoBehaviour
     {
-        private UiController _uiController;
-        private LevelManager _levelManager;
-        private SaveController _saveController;
-        private CameraController _cameraController;
+        [SerializeField] private UiController _uiController;
+        [SerializeField] private LevelManager _levelManager;
+        [SerializeField] private SaveController _saveController;
+        [SerializeField] private CameraController _cameraController;
         
         private GameData _gameData;
         public int LevelIdex => _gameData.Level;
@@ -35,10 +35,13 @@ namespace Manager
 
         private void OnGameStarted()
         {
-            _cameraController.Initialize(_levelManager.Player.transform);
-            _levelManager.Player.OnWin += WinGame;
-            _levelManager.Player.OnDead += FailGame;
-            _levelManager.Player.OnCoinCollected += OnCoinCollected;
+            if (_levelManager.Player != null)
+            {
+                _cameraController.Initialize(_levelManager.Player.transform);
+                _levelManager.Player.OnWin += WinGame;
+                _levelManager.Player.OnDead += FailGame;
+                _levelManager.Player.OnCoinCollected += OnCoinCollected;
+            }
         }
 
         private void OnGameEnded()

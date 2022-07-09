@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class UiGamePanel : MonoBehaviour
 {
-    [SerializeField] private UICoinText _coinsText = null;
-    [SerializeField] private GameManager _gameManager = null;
+    [SerializeField] private UICoinText _coinsText;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private SaveController save;
 
     private int Coin;

@@ -13,7 +13,7 @@ namespace Manager
         public void InstantiateLevel(int index)
         {
             if (levels.Length==0) return;
-            if (_currentLevel == null)
+            if (_currentLevel!= null)
             {
                 Destroy(_currentLevel);
             }
