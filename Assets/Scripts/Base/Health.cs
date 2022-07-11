@@ -5,11 +5,11 @@ namespace DefaultNamespace
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private float maxHealth;
+        [SerializeField] private float maxHealth = 3f;
 
         private float _currentHelth;
 
-        private event Action OnDie;
+        public event Action OnDie;
 
         public float HealthValue
         {
@@ -17,6 +17,7 @@ namespace DefaultNamespace
 
             set
             {
+                //здоровье не может быть отрицательным и больше макс
                 _currentHelth = Mathf.Clamp(value, 0, maxHealth);
                 if (_currentHelth == 0f)
                 {
@@ -30,5 +31,11 @@ namespace DefaultNamespace
             _currentHelth = maxHealth;
         }
         
+        [ContextMenu("Set dead")]
+        public void SetDead()
+        {
+            //для разных проверок, например проверить анимацию смерти
+           // HealthValue = 0f;
+        }
     }
 }

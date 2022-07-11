@@ -18,13 +18,11 @@ namespace Enemy
 
         protected override void Movement()
         {
-            //current position
-            var position = transform.position;
-            Vector2 direction = (targetPosition.position - position).normalized;
+            Vector2 direction = (_currentTarget.position - transform.position).normalized;
             //distance in frame
             float moveDistance = speed * Time.deltaTime;
             //check distance to goal(target-point)
-            float distanceToTarget = Vector2.Distance(_currentTarget.position, position);
+            float distanceToTarget = Vector2.Distance(_currentTarget.position, transform.position);
             if (moveDistance > distanceToTarget)
             {
                 moveDistance = distanceToTarget;
