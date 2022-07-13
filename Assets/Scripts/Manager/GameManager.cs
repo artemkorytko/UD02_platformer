@@ -9,7 +9,7 @@ namespace Manager
         [SerializeField] private LevelManager _levelManager;
         [SerializeField] private SaveController _saveController;
         [SerializeField] private CameraController _cameraController;
-        [SerializeField] private PlayerMovement _movement;
+        
         private GameData _gameData;
         public int LevelIdex => _gameData.Level;
         public int Coins => _gameData.Coins;
@@ -30,9 +30,7 @@ namespace Manager
         {
             _levelManager.InstantiateLevel(_gameData.Level);
             _uiController.ShowGamePanel();
-            OnGameStarted();
-            _movement.SetActive(true);
-            
+            OnGameStarted(); 
         }
 
         private void OnGameStarted()
@@ -51,7 +49,6 @@ namespace Manager
             _levelManager.Player.OnWin -= WinGame;
             _levelManager.Player.OnDead -= FailGame;
             _levelManager.Player.OnCoinCollected -= OnCoinCollected;
-            _movement.SetActive(false);
         }
 
         private void WinGame()

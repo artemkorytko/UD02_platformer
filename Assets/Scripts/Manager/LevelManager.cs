@@ -5,7 +5,8 @@ namespace Manager
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private GameObject[] levels;
-
+        
+        private PlayerMovement _movement;
         private GameObject _currentLevel;
         
         public PlayerController Player { get; private set; }
@@ -22,6 +23,9 @@ namespace Manager
             
             _currentLevel = Instantiate(levels[index],transform);
             Player = _currentLevel.GetComponentInChildren<PlayerController>();
+
+            _movement = GetComponentInChildren<PlayerMovement>();
+            _movement.SetActive(true);
         }
     }
 }

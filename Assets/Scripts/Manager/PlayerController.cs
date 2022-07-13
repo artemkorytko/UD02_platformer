@@ -62,7 +62,7 @@ namespace Manager
         private void OnDie()
         {
             _movement.OnDie();
-            StartCoroutine(DelayCall(OnDie, 2f));
+            StartCoroutine(DelayCall(OnDead, 2f));
             Deactivate();
         }
     }
