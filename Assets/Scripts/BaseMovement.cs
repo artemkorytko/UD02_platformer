@@ -8,7 +8,7 @@ public abstract class BaseMovement : MonoBehaviour
 
     protected BaseAnimationController _animationController;
 
-    private void Start()
+    protected virtual void Start()
     {
         _animationController = GetComponent<BaseAnimationController>();
     }
@@ -19,4 +19,15 @@ public abstract class BaseMovement : MonoBehaviour
     }
 
     protected abstract void Movement();
+    
+    protected void UpdateSide(int side)
+    {
+        var localScale = transform.localScale;
+        if (Mathf.Sign(localScale.x) != side)
+        {
+            localScale.x *= -1;
+        }
+        
+        transform.localScale = localScale;
+    }
 }

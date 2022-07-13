@@ -7,14 +7,15 @@ public class EnemyMovement : BaseMovement
     
     private Transform _currentTarget;
 
-    private void Awake()
+    protected override void Start()
     {
+        base.Start();
         _currentTarget = targetPosition;
     }
     
     protected override void Movement()
     {
-        var direction = (targetPosition.position - transform.position).normalized;
+        Vector2 direction = (_currentTarget.position - transform.position).normalized;
         float moveDistance = speed * Time.deltaTime;
         float distanceToTarget = Vector2.Distance(_currentTarget.position, transform.position);
 
@@ -34,17 +35,5 @@ public class EnemyMovement : BaseMovement
         transform.Translate(direction * moveDistance);
         _animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
         UpdateSide((int)Mathf.Sign(direction.x));
-    }
-
-    private void UpdateSide(int side)
-    {
-        var localScale = transform.localScale;
-
-        if (Mathf.Sign(localScale.x) != side)
-        {
-            localScale.x *= -1;
-        }
-        
-        transform.localScale = localScale;
     }
 }
