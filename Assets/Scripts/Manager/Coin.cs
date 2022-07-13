@@ -4,6 +4,6 @@ namespace Manager
 {
     public class Coin : MonoBehaviour
     {
-        
+
     }
 }

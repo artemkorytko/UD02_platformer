@@ -15,6 +15,7 @@ namespace Manager
             {
                 health.HealthValue -= damageValue;
             }
+            Debug.Log("Damage");
         }
     }
 }

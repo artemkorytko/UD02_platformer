@@ -13,10 +13,9 @@ public class PlayerMovement : BaseMovement
     private const string VERTICAL = "Vetrical";
 
     private Rigidbody2D _rigidbody;
-    private bool _isCunJamp;
+    private bool _isCunJamp=true;
     private float _maxVelicityMagnitude;
     private bool _isActive;
-    private bool _isCanJump;
     protected override void Start()
     { 
         base.Start();
@@ -42,7 +41,7 @@ public class PlayerMovement : BaseMovement
     protected override void Movement()
     {
         HorizontalMovement();
-        VertikalMovement();
+        VerticalMovement();
         ClampVelosity();
     }
 
@@ -56,7 +55,7 @@ public class PlayerMovement : BaseMovement
 
     }
 
-    private void VertikalMovement()
+    private void VerticalMovement()
     {
         if (_isCunJamp && SimpleInput.GetAxis(VERTICAL) > 0)
         {
@@ -99,7 +98,7 @@ public class PlayerMovement : BaseMovement
 
         if (platform != null)
         {
-            _isCanJump = true;
+            _isCunJamp = true;
         }
     }
 

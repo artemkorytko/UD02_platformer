@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damping: 2
-  offset: {x: 2, y: 1}
+  offset: {x: 2, y: 1, z: -10}
 --- !u!114 &1303860202 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5088202977986288093, guid: 7b310569f58f19f4488d1b07a4c5c0c7, type: 3}
@@ -331,7 +331,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1969846931368793180
 PrefabInstance:
@@ -478,6 +478,10 @@ PrefabInstance:
       propertyPath: save
       value: 
       objectReference: {fileID: 1995719417}
+    - target: {fileID: 6031472447069148423, guid: 5e5bcaf57375ba24b983442827d04341, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6031472447069148423, guid: 5e5bcaf57375ba24b983442827d04341, type: 3}
       propertyPath: _gameManager
       value: 
@@ -633,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 1192907946114702043, guid: 7d9e6870dc301a442a916d79242954a2, type: 3}
     - target: {fileID: 6164585272016455886, guid: d3c82802875901b48b6ad83be108fd28, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6164585272016455886, guid: d3c82802875901b48b6ad83be108fd28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -645,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6164585272016455886, guid: d3c82802875901b48b6ad83be108fd28, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 6164585272016455886, guid: d3c82802875901b48b6ad83be108fd28, type: 3}
       propertyPath: m_LocalRotation.w

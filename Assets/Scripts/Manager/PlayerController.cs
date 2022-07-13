@@ -10,7 +10,7 @@ namespace Manager
     {
         private PlayerMovement _movement;
         private Health _health;
-        private bool _isActive;
+        private bool _isActive=true;
         public event Action OnWin;
         public event Action OnDead;
         public event Action OnCoinCollected;
@@ -37,6 +37,7 @@ namespace Manager
             {
                 coin.gameObject.SetActive(false);
                 OnCoinCollected?.Invoke();
+                
             }
 
             

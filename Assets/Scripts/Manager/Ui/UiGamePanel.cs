@@ -15,7 +15,7 @@ public class UiGamePanel : MonoBehaviour
     
     private void OnEnable()
     {
-        _coinsText.UpdateText(_gameManager.Coins);
+//        _coinsText.UpdateText(_gameManager.Coins);
         _gameManager.OnCoinCountChanged += _coinsText.UpdateText;
     }
 
