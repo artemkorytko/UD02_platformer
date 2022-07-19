@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,9 +9,12 @@ namespace Manager
 {
     public class PlayerController : MonoBehaviour
     {
+        private UICoinText coinText;
         private PlayerMovement _movement;
         private Health _health;
         private bool _isActive=true;
+        private PlayerAnimationController _animationController;
+        private int count = 0;
         public event Action OnWin;
         public event Action OnDead;
         public event Action OnCoinCollected;
@@ -20,6 +24,8 @@ namespace Manager
             _movement = GetComponent<PlayerMovement>();
             _health = GetComponent<Health>();
             _health.OnDie += OnDie;
+            _animationController = GetComponent<PlayerAnimationController>();
+            coinText = FindObjectOfType<UICoinText>();
         }
 
         private void OnDestroy()
@@ -35,6 +41,8 @@ namespace Manager
 
             if (coin != null)
             {
+                count++;
+                coinText.UpdateText(count);
                 coin.gameObject.SetActive(false);
                 OnCoinCollected?.Invoke();
                 
@@ -44,7 +52,7 @@ namespace Manager
             if (collision.GetComponent<Finish>())
             {
                 Deactivate();
-                //_animationController.SetSpeedDirection(0);
+                _animationController.SetSpeedDirection(0);
                 StartCoroutine(DelayCall(OnWin, 2f));
             }
         }

@@ -10,7 +10,7 @@ public class PlayerMovement : BaseMovement
     [SerializeField] private float jumpImpuls;
     
     private  const  string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vetrical";
+    private const string VERTICAL = "Vertical";
 
     private Rigidbody2D _rigidbody;
     private bool _isCunJamp=true;
@@ -92,7 +92,7 @@ public class PlayerMovement : BaseMovement
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!_isActive) return;
+        //if (!_isActive) return;
 
         PlatformController platform = collision.gameObject.GetComponent<PlatformController>();
 
@@ -100,6 +100,7 @@ public class PlayerMovement : BaseMovement
         {
             _isCunJamp = true;
         }
+        Debug.Log(555);
     }
 
 

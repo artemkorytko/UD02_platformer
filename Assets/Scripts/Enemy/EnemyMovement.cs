@@ -39,10 +39,10 @@ namespace Enemy
             transform.Translate(direction * moveDistance);
             _animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
 
-            UpdateSide((int)Mathf.Sign(direction.x));
+            UpdateSpriteSide((int)Mathf.Sign(direction.x));
         }
 
-        private  void UpdateSide(int side)
+        private  void UpdateSpriteSide(int side)
         {
             Vector2 localScale = transform.localScale;
 

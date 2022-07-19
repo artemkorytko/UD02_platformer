@@ -25,11 +25,11 @@ namespace Manager
             }
         }
 
-        /*public GameData GameData
+        public GameData GameData
         {
             get => JsonUtility.FromJson<GameData>(PlayerPrefs.GetString(SAVE_KEY, JsonUtility.ToJson(new GameData())));
             set => PlayerPrefs.SetString(SAVE_KEY, JsonUtility.ToJson(value));
-        }*/ 
+        }
     }
 
     [Serializable]
