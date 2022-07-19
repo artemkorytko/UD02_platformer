@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DefaultNamespace.Components
+namespace Components
 {
     public class FinishComponent : MonoBehaviour
     {

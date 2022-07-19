@@ -1,8 +1,6 @@
-﻿using System;
-using Enemy;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace DefaultNamespace.Components
+namespace Components
 {
     public class CoinComponent : MonoBehaviour
     {

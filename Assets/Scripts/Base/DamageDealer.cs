@@ -1,10 +1,9 @@
-﻿using System;
-using DefaultNamespace;
+﻿using DefaultNamespace;
 using UnityEngine;
 
 namespace Base
 {
-    public class DamageDiller : MonoBehaviour
+    public class DamageDealer : MonoBehaviour
     {
         [SerializeField] private float damageValue;
 
@@ -12,6 +11,7 @@ namespace Base
         {
             if (col.gameObject.TryGetComponent(out Health health))
             {
+                Debug.Log(health);
                 health.HealthValue -= damageValue;
             }
         }

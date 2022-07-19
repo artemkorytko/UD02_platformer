@@ -1,15 +1,15 @@
 using System;
 using System.Collections;
+using Components;
 using DefaultNamespace;
-using DefaultNamespace.Components;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private PlayerMovement _movement;
     private Health _health;
-
-    private bool _iaActive;
+   
+    private bool _isActive;
     public event Action OnWin;
     public event Action OnDeath;
     public event Action OnCoinCollected;
@@ -18,18 +18,19 @@ public class PlayerController : MonoBehaviour
     {
         _movement = GetComponent<PlayerMovement>();
         _health = GetComponent<Health>();
-        _health.OnDie += OnDie;
+        
+        _health.OnDie += OnDiePLayer;
         Activate();
     }
 
     private void OnDestroy()
     {
-        _health.OnDie -= OnDie;
+        _health.OnDie -= OnDiePLayer;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!_iaActive) return;
+        if (!_isActive) return;
         if (col.gameObject.TryGetComponent(out CoinComponent coin))
 
         {
@@ -43,30 +44,37 @@ public class PlayerController : MonoBehaviour
             var delayCall = DelayCall(OnWin, 2f);
             StartCoroutine(delayCall);
         }
+
+        if (col.gameObject.TryGetComponent(out AbyssComponent abyssComponent))
+        {
+            Deactivate();
+            var delayCall = DelayCall(OnDiePLayer, 0.1f);
+            StartCoroutine(delayCall);
+        }
     }
 
     private void Deactivate()
     {
-        _iaActive = false;
+        _isActive = false;
         _movement.SetActive(false);
     }
 
     private void Activate()
     {
-        _iaActive = true;
+        _isActive = true;
         _movement.SetActive(true);
+    }
+
+    private void OnDiePLayer()
+    {
+        _movement.OnDieAnimation();
+        Deactivate();
+        StartCoroutine(DelayCall(OnDeath, 2f));
     }
 
     private IEnumerator DelayCall(Action action, float delay)
     {
         yield return new WaitForSeconds(delay);
         action?.Invoke();
-    }
-
-    private void OnDie()
-    {
-        _movement.OnDie();
-        StartCoroutine(DelayCall(OnDie, 2f));
-        Deactivate();
     }
 }

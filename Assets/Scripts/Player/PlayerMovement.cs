@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Base;
 using UnityEngine;
 
@@ -7,11 +6,13 @@ public class PlayerMovement : BaseMovement
 {
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
-    
+
     [SerializeField] private float jumpImpulse = 5f;
     private Rigidbody2D _rigidbody;
-   
+    private Animation animation;
+
     private bool _isCanJump;
+    private bool _isJumpAnimation;
     private bool _isActive;
     private float _maxVelocityMagnitud;
 
@@ -21,13 +22,13 @@ public class PlayerMovement : BaseMovement
         _rigidbody = GetComponent<Rigidbody2D>();
         _isCanJump = true;
         _isActive = true;
-        //скорост по у во 2ую степень + скорость по х во 2ую степень и возвести в квадрат - получили max velocity(gipotenus)
+        //Max velocity - скорост по у во 2ую степень + скорость по х во 2ую степень и возвести в квадрат - получили max velocity(gipotenus)
         _maxVelocityMagnitud = Mathf.Sqrt(Mathf.Pow(jumpImpulse, 2f) + Mathf.Pow(speed, 2f));
     }
 
     protected override void Update()
     {
-        if(!_isActive) return;
+        if (!_isActive) return;
         base.Update();
         UpdateSide();
     }
@@ -50,26 +51,27 @@ public class PlayerMovement : BaseMovement
         //присваиваем измененное значение
         _rigidbody.velocity = velocity;
         //если равен 0, то возвращаем 0, если не равен и значение отрицательное вернет знак -, если зн. положительноне знак +
-        _animationController.SetSpeedDirection(velocity.x == 0 ? 0 : (int)Mathf.Sign(velocity.x));
+       // _animationController.SetSpeedDirection(velocity.x == 0 ? 0 : (int)Mathf.Sign(velocity.x));
     }
 
     private void VerticalMovement()
     {
         if (_isCanJump && SimpleInput.GetAxis(VERTICAL) > 0)
         {
+            //не допустить несколько прыжков в воздухе
             _isCanJump = false;
             //apply force to rigidbody, направление вверх, импульсом(разовый толчок)
             _rigidbody.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
-            
+
             if (_animationController is PlayerAnimationController anim)
             {
                 //anim jump is working
                 anim.DoJump();
             }
-           // PlayerAnimationController anim = _animationController as PlayerAnimationController;
+            // PlayerAnimationController anim = _animationController as PlayerAnimationController;
         }
     }
-    
+
     //ограничение скорость движения - не двигаться  > max скорости
     private void ClampVelocity()
     {
@@ -78,7 +80,7 @@ public class PlayerMovement : BaseMovement
         //диапазон от мин зн. 0 до макс. зн. velocityMagnitude
         velocityMagnitude = Mathf.Clamp(velocityMagnitude, 0, _maxVelocityMagnitud);
         //обновляем значение - velocity приводим к 1 и * на 
-        _rigidbody.velocity = _rigidbody.velocity.normalized * velocityMagnitude; 
+        _rigidbody.velocity = _rigidbody.velocity.normalized * velocityMagnitude;
     }
 
     private void UpdateSide()
@@ -94,6 +96,7 @@ public class PlayerMovement : BaseMovement
         {
             localScale.x *= -1;
         }
+
         //обновить значение
         transform.localScale = localScale;
     }
@@ -108,20 +111,23 @@ public class PlayerMovement : BaseMovement
         }
     }
 
-    public void OnDie()
+    public void OnDieAnimation()
     {
         _animationController.SetDeath();
     }
 
-    //коллизия с платформами
-    private void OnCollisionEnter2D(Collision2D col)
+    public void OnDieAnimationStop()
+    {
+        _animationController.RemoveDeath();
+    }
+    // если коллизия с платформами, возобновить прыжок
+    private void OnCollisionStay2D(Collision2D col)
     {
         if (!_isActive) return;
 
-        if (col.gameObject.TryGetComponent(out PlatformComponet platformComponet))
+        if (col.gameObject.TryGetComponent(out PlatformComponent platformComponent))
         {
             _isCanJump = true;
         }
     }
-
 }

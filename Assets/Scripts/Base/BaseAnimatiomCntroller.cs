@@ -23,7 +23,12 @@ namespace Base
 
         public void SetDeath()
         {
-            _animator.SetBool("Death", true);
+            _animator.SetBool(Death, true);
+        }
+
+        public void RemoveDeath()
+        {
+            _animator.SetBool(Death, false);
         }
     }
 }

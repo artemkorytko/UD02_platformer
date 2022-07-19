@@ -1,5 +1,3 @@
-using System;
-using DefaultNamespace;
 using Interfaces;
 using UnityEngine;
 using DG.Tweening;
@@ -8,7 +6,7 @@ namespace Barriers
 {
     public class SawBarrier : MonoBehaviour, IRevolve
     {
-        private Transform transform;
+        private  Transform transform;
 
         private void Update()
         {

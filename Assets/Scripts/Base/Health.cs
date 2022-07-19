@@ -35,7 +35,7 @@ namespace DefaultNamespace
         public void SetDead()
         {
             //для разных проверок, например проверить анимацию смерти
-           // HealthValue = 0f;
+            HealthValue = 0f;
         }
     }
 }
