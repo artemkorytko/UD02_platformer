@@ -770,6 +770,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6031472447069148425, guid: 5e5bcaf57375ba24b983442827d04341, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6031472447069148427, guid: 5e5bcaf57375ba24b983442827d04341, type: 3}
       propertyPath: m_IsActive
       value: 0
