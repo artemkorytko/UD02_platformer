@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 122721070}
   - component: {fileID: 122721072}
   - component: {fileID: 122721071}
+  - component: {fileID: 122721073}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -749,6 +750,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &122721073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122721066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f2a13ec78e441b867826c1c69c3da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &215059246
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +776,10 @@ GameObject:
   - component: {fileID: 215059250}
   - component: {fileID: 215059251}
   - component: {fileID: 215059252}
+  - component: {fileID: 215059253}
+  - component: {fileID: 215059255}
+  - component: {fileID: 215059254}
+  - component: {fileID: 215059256}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -911,13 +928,64 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215059246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82044e380f4ec6745b81a41c41d8317e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 3
+  jumpForce: 0.4
+--- !u!114 &215059253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215059246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d053b63b38e4e1ab5a2f386503dca56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jumpImpulse: 10
+--- !u!114 &215059254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215059246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be1e080464a4274a2ad060ff57373c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &215059255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215059246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e16b0b737ec48b7aad568fe47d26bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &215059256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215059246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92086b974ea847b6a59217f7b88fc778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &215202220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1251,7 @@ Animator:
   m_GameObject: {fileID: 1807393214}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 94f37ca0b05bd4045b719488a3dd63f9, type: 2}
+  m_Controller: {fileID: 9100000, guid: a7c9780789df56f43bd52779b0ee4921, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
