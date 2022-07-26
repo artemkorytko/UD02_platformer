@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -40,7 +38,6 @@ public class EnemyController : MonoBehaviour
                 _currentTarget = targetPosition;
                 GetComponent<SpriteRenderer>().flipX = false;
             }
-
         }
 
         transform.Translate(direction * moveDistance);

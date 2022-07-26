@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveController : MonoBehaviour
@@ -9,7 +7,6 @@ public class SaveController : MonoBehaviour
     {
         public int Golds = 0;
         public int Level = 0;
-        public int Live = 0;
     }
 
     public GameData LoadData()

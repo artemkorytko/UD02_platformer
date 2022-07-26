@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private Transform[] Hearts = new Transform[3];
-    private LevelController Level;
+    private Transform[] _hearts = new Transform[3];
+    private LevelController _level;
 
     private void Awake()
     {
-        Level = FindObjectOfType<LevelController>();
-        for (int i = 0; i < Hearts.Length; i++)
+        _level = FindObjectOfType<LevelController>();
+        for (int i = 0; i < _hearts.Length; i++)
         {
-            Hearts[i] = transform.GetChild(i);
+            _hearts[i] = transform.GetChild(i);
         }
     }
     public void Refresh()
     {
-        for (int i = 0; i < Hearts.Length; i++)
+        for (int i = 0; i < _hearts.Length; i++)
         {
-            if (i < Level.Player.lives) Hearts[i].gameObject.SetActive(true);
-            else Hearts[i].gameObject.SetActive(false);
+            if (i < _level.Player.Lives) _hearts[i].gameObject.SetActive(true);
+            else _hearts[i].gameObject.SetActive(false);
         }
     }
 }

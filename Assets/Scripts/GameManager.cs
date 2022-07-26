@@ -10,12 +10,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraController _camera;
     [SerializeField] private Text _goldText;
 
+    private FireBaseManager _fireBaseManager;
+
     private GameData _gameData;
 
-    private void Awake()
+    private async void Awake()
     {
+        _fireBaseManager = FindObjectOfType<FireBaseManager>();
         _uiManager.ShowStartScreen();
         _gameData = _saveController.LoadData();
+        await _fireBaseManager.Initialize(this);
     }
 
     public void StartGame()
@@ -47,6 +51,5 @@ public class GameManager : MonoBehaviour
         _gameData.Golds++;
         _goldText.text = _gameData.Golds.ToString();
     }
-
 
 }

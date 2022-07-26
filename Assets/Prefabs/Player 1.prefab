@@ -160,9 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animatorController: {fileID: 8671128765400768159}
-  Speed: 2
-  JumpHeight: 7
-  Lives: 3
+  _speed: 3
+  _jumpHeight: 7
 --- !u!114 &8671128765400768159
 MonoBehaviour:
   m_ObjectHideFlags: 0
