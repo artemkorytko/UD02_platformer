@@ -15,9 +15,11 @@ public class EnemyMovement : BaseMovement
     
     protected override void Movement()
     {
-        Vector2 direction = (_currentTarget.position - transform.position).normalized;
-        float moveDistance = speed * Time.deltaTime;
-        float distanceToTarget = Vector2.Distance(_currentTarget.position, transform.position);
+        Vector2 currentTargetPosition = _currentTarget.position;
+        Vector2 position = transform.position;
+        var direction = (currentTargetPosition - position).normalized;
+        var moveDistance = speed * Time.deltaTime;
+        var distanceToTarget = Vector2.Distance(currentTargetPosition, position);
 
         if (moveDistance > distanceToTarget)
         {
@@ -33,7 +35,7 @@ public class EnemyMovement : BaseMovement
         }
         
         transform.Translate(direction * moveDistance);
-        _animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
+        animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
         UpdateSide((int)Mathf.Sign(direction.x));
     }
 }
