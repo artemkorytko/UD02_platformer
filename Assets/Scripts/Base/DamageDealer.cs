@@ -1,5 +1,4 @@
-﻿using DefaultNamespace;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Base
 {
@@ -11,7 +10,6 @@ namespace Base
         {
             if (col.gameObject.TryGetComponent(out Health health))
             {
-                Debug.Log(health);
                 health.HealthValue -= damageValue;
             }
         }

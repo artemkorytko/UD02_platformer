@@ -6,24 +6,21 @@ namespace Barriers
 {
     public class SawBarrier : MonoBehaviour, IRevolve
     {
-        private  Transform transform;
+        private Sequence sequence;
 
         private void Update()
         {
             Rotation();
         }
 
-        private void OnCollisionEnter2D(Collision2D col)
+        private void Start()
         {
-            if (col.gameObject.TryGetComponent(out PlayerController playerController))
-            {
-                Debug.Log("DodamagetoPlayer");
-            }
+            sequence = DOTween.Sequence();
         }
 
         public void Rotation()
         {
-            transform.DORotate(new Vector3(0f, 0f, 360f), 0f, RotateMode.WorldAxisAdd);
+            sequence?.Append(transform.DORotate(new Vector3(0f, 0f, 360f), 2f, RotateMode.WorldAxisAdd));
         }
     }
 }

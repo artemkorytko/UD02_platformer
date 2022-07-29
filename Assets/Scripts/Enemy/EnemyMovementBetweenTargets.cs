@@ -28,11 +28,11 @@ namespace Enemy
                 moveDistance = distanceToTarget;
                 _currentTarget = _currentTarget == targetPosition ? startPosition : targetPosition;
             }
-            transform.Translate(direction *moveDistance);
+            transform.Translate(direction * moveDistance);
             _animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
             UpdateSpriteSide((int)Mathf.Sign(direction.x));
         }
-        //
+        
         private void UpdateSpriteSide(int side)
         {
             //save current local-scale

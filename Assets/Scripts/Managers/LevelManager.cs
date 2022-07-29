@@ -1,28 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] private GameObject[] levels;
-
-    private GameObject _currentlevel;
-
-    public PlayerController PlayerController { get; private set; }
-
-    public void InitialiseLevel(int index)
+    public class LevelManager : MonoBehaviour
     {
-        if (levels.Length == 0)
+        [SerializeField] private List<GameObject> levels;
+
+        private GameObject _currentlevel;
+
+        public PlayerController PlayerController { get; private set; }
+
+        public void InitialiseLevel(int index)
         {
-            return;
+            if (levels.Count == 0)
+            {
+                return;
+            }
+
+            if (_currentlevel != null)
+            {
+                Destroy(_currentlevel);
+            }
+
+            index = index / levels.Count >= 1 ? index % levels.Count : index;
+
+            _currentlevel = Instantiate(levels[index], transform);
+            PlayerController = _currentlevel.GetComponentInChildren<PlayerController>();
         }
-
-        if (_currentlevel != null)
-        {
-            Destroy(_currentlevel);
-        }
-
-        index = index % levels.Length;
-
-        _currentlevel = Instantiate(levels[index], transform);
-        PlayerController = _currentlevel.GetComponentInChildren<PlayerController>();
     }
 }

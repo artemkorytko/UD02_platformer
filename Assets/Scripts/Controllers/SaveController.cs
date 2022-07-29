@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveController : MonoBehaviour
@@ -28,7 +26,7 @@ public class SaveController : MonoBehaviour
     [Serializable]
     public class GameData
     {
-        public int Hearts = 0;
+        //public int Hearts = 0;
         public int Coins = 0;
         public int Level = 0;
     }

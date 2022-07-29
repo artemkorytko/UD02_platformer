@@ -44,12 +44,11 @@ public class CameraController : MonoBehaviour
         var positionZ = transform.position.z;
 
         int currentX = Mathf.RoundToInt(positionX);
-        //movement to the right
+       
         if (currentX > _lastX)
         {
             _faceLeft = false;
         }
-        //movement to the left
         else if (currentX < _lastX)
         {
             _faceLeft = true;
@@ -59,12 +58,11 @@ public class CameraController : MonoBehaviour
         _lastX = Mathf.RoundToInt(positionX);
 
         Vector3 targetPos;
-        // MOVE TO THE LEFT
+        
         if (_faceLeft)
         {
             targetPos = new Vector3(positionX - offset.x, positionY + offset.y, positionZ);
         }
-        //MOVE TO THE RIGHT
         else
         {
             targetPos = new Vector3(positionX + offset.x, positionY + offset.y, positionZ);

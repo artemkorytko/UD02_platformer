@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace DefaultNamespace
+namespace Base
 {
     public class Health : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace DefaultNamespace
 
             set
             {
-                //здоровье не может быть отрицательным и больше макс
+                //здоровье не может быть отрицательным и больше макс 
                 _currentHelth = Mathf.Clamp(value, 0, maxHealth);
                 if (_currentHelth == 0f)
                 {
@@ -30,11 +30,11 @@ namespace DefaultNamespace
         {
             _currentHelth = maxHealth;
         }
-        
+
+        //для разных проверок, для разработчикав, например проверить анимацию смерти
         [ContextMenu("Set dead")]
         public void SetDead()
         {
-            //для разных проверок, например проверить анимацию смерти
             HealthValue = 0f;
         }
     }

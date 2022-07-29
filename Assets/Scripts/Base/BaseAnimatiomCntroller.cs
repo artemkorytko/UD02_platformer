@@ -25,10 +25,5 @@ namespace Base
         {
             _animator.SetBool(Death, true);
         }
-
-        public void RemoveDeath()
-        {
-            _animator.SetBool(Death, false);
-        }
     }
 }

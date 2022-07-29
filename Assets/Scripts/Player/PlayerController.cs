@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
+using Base;
 using Components;
-using DefaultNamespace;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : BaseClass
 {
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private GameObject downRayObject;
     private PlayerMovement _movement;
     private Health _health;
-   
+
     private bool _isActive;
     public event Action OnWin;
     public event Action OnDeath;
@@ -19,8 +21,14 @@ public class PlayerController : MonoBehaviour
         _movement = GetComponent<PlayerMovement>();
         _health = GetComponent<Health>();
         
+        //если здоровье 0
         _health.OnDie += OnDiePLayer;
         Activate();
+    }
+
+    private void Update()
+    {
+        DamageToEnemy();
     }
 
     private void OnDestroy()
@@ -28,14 +36,19 @@ public class PlayerController : MonoBehaviour
         _health.OnDie -= OnDiePLayer;
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (!_isActive) return;
+        
         if (col.gameObject.TryGetComponent(out CoinComponent coin))
-
         {
             coin.gameObject.SetActive(false);
-            if (OnCoinCollected != null) OnCoinCollected.Invoke();
+            OnCoinCollected?.Invoke();
         }
 
         if (col.gameObject.TryGetComponent(out FinishComponent finishComponent))
@@ -47,9 +60,9 @@ public class PlayerController : MonoBehaviour
 
         if (col.gameObject.TryGetComponent(out AbyssComponent abyssComponent))
         {
-            Deactivate();
             var delayCall = DelayCall(OnDiePLayer, 0.1f);
             StartCoroutine(delayCall);
+            OnDestroy();
         }
     }
 
@@ -70,6 +83,22 @@ public class PlayerController : MonoBehaviour
         _movement.OnDieAnimation();
         Deactivate();
         StartCoroutine(DelayCall(OnDeath, 2f));
+    }
+
+    private void DamageToEnemy()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(downRayObject.transform.position, -Vector2.up, 0.3f, layerMask);
+        Collider2D hitCollider = hit.collider;
+        if (hitCollider != null)
+        {
+            BaseClass damageOwner = hitCollider.GetComponent<BaseClass>();
+
+            if (damageOwner != null)
+            {
+                damageOwner.GetDamage(damage);
+            }
+            Debug.DrawRay(downRayObject.transform.position, -Vector2.up * hit.distance, Color.yellow);
+        }
     }
 
     private IEnumerator DelayCall(Action action, float delay)

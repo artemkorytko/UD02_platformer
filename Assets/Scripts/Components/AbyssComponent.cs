@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AbyssComponent : MonoBehaviour
+namespace Components
 {
+    public class AbyssComponent : MonoBehaviour
+    {
+    }
 }
