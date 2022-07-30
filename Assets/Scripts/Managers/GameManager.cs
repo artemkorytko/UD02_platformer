@@ -36,13 +36,14 @@ public class GameManager : MonoBehaviour
         levelManager.Player.OnWin += WinGame;
         levelManager.Player.OnDead += FailGame;
         levelManager.Player.OnCoinCollected += OnCoinCollected;
+        OnCoinCountChanged?.Invoke(_gameData.Coins);
     }
 
     private void OnGameEnded()
     {
         levelManager.Player.OnWin -= WinGame;
         levelManager.Player.OnDead -= FailGame;
-        levelManager.Player.OnCoinCollected -= OnCoinCollected;        
+        levelManager.Player.OnCoinCollected -= OnCoinCollected;
     }
 
     private void WinGame()

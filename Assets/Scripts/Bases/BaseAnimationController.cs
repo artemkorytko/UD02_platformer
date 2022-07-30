@@ -19,7 +19,7 @@ public class BaseAnimationController : MonoBehaviour
     
     public void SetSpeedDirection(int value)
     {
-        //_animator.SetInteger(Speed, value);
+        _animator.SetInteger(Speed, value);
     }
     
     public void SetDeathAnimation()

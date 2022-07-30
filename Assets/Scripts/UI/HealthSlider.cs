@@ -23,7 +23,7 @@ public class HealthSlider : MonoBehaviour
         healthSlider.value = health.HealthValue;
         if (healthSlider.value == 0)
         {
-            healthSlider.fillRect.gameObject.SetActive(false);
+            healthSlider.gameObject.SetActive(false);
         }
     }
 

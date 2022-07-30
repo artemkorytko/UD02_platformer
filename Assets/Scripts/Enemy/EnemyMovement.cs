@@ -35,7 +35,10 @@ public class EnemyMovement : BaseMovement
         }
         
         transform.Translate(direction * moveDistance);
-        animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
-        UpdateSide((int)Mathf.Sign(direction.x));
+        
+        if (UpdateSide((int)Mathf.Sign(direction.x)))
+        {
+            animationController.SetSpeedDirection((int)Mathf.Sign(direction.x));
+        }
     }
 }

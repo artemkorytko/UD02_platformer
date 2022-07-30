@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : BaseMovement
 {
@@ -51,9 +50,9 @@ public class PlayerMovement : BaseMovement
             _isCanJump = false;
             _rigidbody.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
 
-            if (animationController is PlayerAnimationController anim)
+            if (animationController is PlayerAnimationController animation)
             {
-                anim.DoJump();
+                animation.DoJump();
             }
         }
     }
