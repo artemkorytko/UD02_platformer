@@ -21,6 +21,7 @@ public class HealthSlider : MonoBehaviour
     private void HealthView()
     {
         healthSlider.value = health.HealthValue;
+        
         if (healthSlider.value == 0)
         {
             healthSlider.gameObject.SetActive(false);

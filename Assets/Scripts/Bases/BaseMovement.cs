@@ -5,11 +5,11 @@ public abstract class BaseMovement : MonoBehaviour
 {
     [SerializeField] protected float speed = 5f;
 
-    protected BaseAnimationController animationController;
+    protected BaseAnimationController _animationController;
 
     protected virtual void Start()
     {
-        animationController = GetComponent<BaseAnimationController>();
+        _animationController = GetComponent<BaseAnimationController>();
     }
 
     protected virtual void Update()

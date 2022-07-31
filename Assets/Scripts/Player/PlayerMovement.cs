@@ -40,7 +40,14 @@ public class PlayerMovement : BaseMovement
         var velocity = _rigidbody.velocity;
         velocity.x = horizontalAxis * speed;
         _rigidbody.velocity = velocity;
-        animationController.SetSpeedDirection(velocity.x == 0 ? 0 : (int)Mathf.Sign(velocity.x));
+        if (_isCanJump)
+        {
+            _animationController.SetSpeedDirection(velocity.x == 0 ? 0 : (int)Mathf.Sign(velocity.x));
+        }
+        else
+        {
+            _animationController.SetSpeedDirection(0);
+        }
     }
 
     private void VerticalMovement()
@@ -50,9 +57,9 @@ public class PlayerMovement : BaseMovement
             _isCanJump = false;
             _rigidbody.AddForce(jumpImpulse * Vector2.up, ForceMode2D.Impulse);
 
-            if (animationController is PlayerAnimationController animation)
+            if (_animationController is PlayerAnimationController anim)
             {
-                animation.DoJump();
+                anim.DoJump();
             }
         }
     }
@@ -78,13 +85,13 @@ public class PlayerMovement : BaseMovement
         if (_isActive == false)
         {
             _rigidbody.velocity = Vector2.zero;
-            animationController.SetSpeedDirection(0);
+            _animationController.SetSpeedDirection(0);
         }
     }
 
     public void OnDie()
     {
-        animationController.SetDeathAnimation();
+        _animationController.SetDeathAnimation();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
