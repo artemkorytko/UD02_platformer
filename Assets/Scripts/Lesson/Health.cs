@@ -5,18 +5,20 @@ namespace Lesson
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private float maxHealth;
+        [SerializeField] private int maxHealth;
 
-        private float _currentHealth;
+        private int _currentHealth;
 
         public event Action OnDie;
+        public event Action<int> HealthСhanged;
 
-        public float HealthValue
+        public int HealthValue
         {
             get => _currentHealth;
             set
             {
                 _currentHealth = Mathf.Clamp(value, 0, maxHealth);
+                HealthСhanged?.Invoke(_currentHealth);
                 if (_currentHealth == 0f)
                 {
                     OnDie?.Invoke();

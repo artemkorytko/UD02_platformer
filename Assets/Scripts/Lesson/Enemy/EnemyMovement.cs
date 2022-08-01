@@ -10,6 +10,13 @@ namespace Lesson.Enemy
 
         private Transform _currentTarget;
 
+        protected override void Start()
+        {
+            base.Start();
+            _currentTarget = targetPosition;
+        }
+
+        // ReSharper disable Unity.PerformanceAnalysis
         protected override void Movement()
         {
             Vector2 direction = (_currentTarget.position - transform.position).normalized;
@@ -41,8 +48,10 @@ namespace Lesson.Enemy
             Vector2 localScale = transform.localScale;
             if (Mathf.Sign(localScale.x) != side)
             {
-                localScale.x += -1;
+                localScale.x *= -1;
             }
+
+            transform.localScale = localScale;
         }
     }
 }

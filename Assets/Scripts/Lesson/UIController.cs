@@ -29,24 +29,28 @@ namespace Lesson
         {
             DisableCurrentPanel();
             currentPanel = startPanel;
+            EnableCurrentPanel();
         }
         
         public void ShowGamePanel()
         {
             DisableCurrentPanel();
             currentPanel = gamePanel;
+            EnableCurrentPanel();
         }
         
         public void ShowWinPanel()
         {
             DisableCurrentPanel();
             currentPanel = winPanel;
+            EnableCurrentPanel();
         }
         
         public void ShowLostPanel()
         {
             DisableCurrentPanel();
             currentPanel = lostPanel;
+            EnableCurrentPanel();
         }
     }
 }

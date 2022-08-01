@@ -5,20 +5,44 @@ namespace Lesson
 {
     public class GameManager : MonoBehaviour
     {
-        private UIController _uiController;
-        private LevelManager _levelManager;
-        private SaveController _saveController;
-        private CameraController _cameraMovement;
+        [SerializeField] private UIController _uiController;
+        [SerializeField] private LevelManager _levelManager;
+        [SerializeField] private SaveController _saveController;
+        [SerializeField] private CameraController _cameraMovement;
 
         private GameData gameData;
+        public static GameManager Instance = null;
 
         public event Action<int> OnCoinCountChanged;
 
+        private int _coin = 0;
+
+        public int Coin
+        {
+            get
+            {
+                return _coin;
+            }
+
+            set
+            {
+                if (value >= 0)
+                {
+                    _coin = value;
+                    OnCoinCountChanged?.Invoke(_coin);
+                }
+            }
+        }
+        
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            
             gameData = _saveController.LoadData();
             _uiController.ShowStartPanel();
-            StartGame();
         }
 
         private void OnDestroy()

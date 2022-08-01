@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Lesson.Player;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Lesson
@@ -70,7 +71,7 @@ namespace Lesson
         private void OnDie()
         {
             _movement.OnDie();
-            StartCoroutine(DelayCall(OnDie, 2));
+            StartCoroutine(DelayCall(OnDead, 2));
             Deactivate();
         }
     }

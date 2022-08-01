@@ -7,7 +7,7 @@ namespace Lesson
     public class CameraController: MonoBehaviour
     {
         [SerializeField] private float damping = 2f;
-        [SerializeField] private Vector2 offset = new Vector2(2f, 1f);
+        [SerializeField] private Vector3 offset = new Vector3(2f, 1f, -10f);
 
         private Transform _target;
         private bool faceLeft;
@@ -24,7 +24,7 @@ namespace Lesson
         {
             var position = _target.position;
             lastX = Mathf.RoundToInt(position.x);
-            transform.position = new Vector2(position.x + offset.x, position.y + offset.y);
+            transform.position = new Vector3(position.x + offset.x, position.y + offset.y, -10f);
         }
 
         private void LateUpdate()
@@ -43,9 +43,9 @@ namespace Lesson
             
             lastX = Mathf.RoundToInt(position.x);
 
-            var target = faceLeft ? new Vector2(position.x - offset.x, position.y - offset.y) : new Vector2(position.x + offset.x, position.y + offset.y);
+            var target = faceLeft ? new Vector3(position.x - offset.x, position.y + offset.y, -10f) : new Vector3(position.x + offset.x, position.y + offset.y, -10f);
 
-            transform.position = Vector2.Lerp(transform.position, target, damping * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, target, damping * Time.deltaTime);
         }
     }
 }
