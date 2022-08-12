@@ -26,14 +26,12 @@ namespace Platformer
                 Vector2 localScale = gameObject.transform.localScale;
                 localScale.x = 1;
                 transform.localScale = localScale;
-                Debug.Log("Повернули влево");
             }
             else
             {
                 Vector2 localScale = gameObject.transform.localScale;
                 localScale.x = -1;
                 transform.localScale = localScale;
-                Debug.Log("Повернули вправо");
             }
         }
         

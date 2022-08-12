@@ -10,5 +10,7 @@ namespace Platformer
         public event Action<int> OnCoinCollected;
     }
     
+    
+    
 
 }

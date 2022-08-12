@@ -1,3 +1,4 @@
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,13 +6,15 @@ namespace Platformer
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject mainMenuScreen;
-        [SerializeField] private GameObject gameScreen;
+        [SerializeField] public GameObject mainMenuScreen;
+        [SerializeField] public GameObject gameScreen;
         [SerializeField] private GameObject winScreen;
         [SerializeField] private GameObject failScreen;
         private GameObject _currentScreen;
         private GameManager _gameManager;
 
+        
+        
         private void Awake()
         {
             _gameManager = FindObjectOfType<GameManager>();
@@ -36,7 +39,7 @@ namespace Platformer
         }
 
         
-        public void ShowStartScreen()
+        public void ShowMainMenuScreen()
         {
             DisableCurrentScreen();
             _currentScreen = mainMenuScreen;

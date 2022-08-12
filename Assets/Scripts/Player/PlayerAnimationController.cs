@@ -6,11 +6,11 @@ namespace Platformer
     {
         private const string JUMP = "Jump";
         
-        private static readonly int Jump1 = Animator.StringToHash(JUMP);
+        //private static readonly int Jump1 = Animator.StringToHash(JUMP);
 
         public void DoJump()
         {
-            _animator.SetTrigger(Jump1);
+            _animator.SetTrigger(JUMP);
         }
     }
 }
