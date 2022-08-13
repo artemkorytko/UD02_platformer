@@ -1,26 +1,37 @@
+using Platformer;
+using UI;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Platformer
+namespace Player
 {
     public class PlayerMovementController : BaseMovementController
     {
         //private const string HORIZONTAL = "Horizontal";
+        private UIManager _uiManager;
+        private Button _jumpButton;
         private Joystick _joystick;
         private Rigidbody2D _rb;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            _joystick = FindObjectOfType<Joystick>();
+            _uiManager = FindObjectOfType<UIManager>();
         }
+        
 
         private void Update()
         {
             Movement();
         }
+        
+        
         protected override void Movement()
         {
-            float horizontalAxis = _joystick.Horizontal;
+            _joystick = _uiManager.PlayerJoystick;
+            _jumpButton = _uiManager.PlayerJumpButton;
+            float horizontalAxis;
+            horizontalAxis = _joystick.Horizontal;
             Vector2 velocity = _rb.velocity; 
             velocity.x = speed * horizontalAxis;
             _rb.velocity = velocity;

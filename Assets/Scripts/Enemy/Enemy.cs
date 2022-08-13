@@ -10,7 +10,7 @@ namespace Platformer
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.TryGetComponent<Player>(out Player player))
+            if (collision.gameObject.TryGetComponent<Player.Player>(out Player.Player player))
             {
                 isAlive = false;
             }

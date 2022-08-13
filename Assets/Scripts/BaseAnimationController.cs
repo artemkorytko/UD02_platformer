@@ -1,44 +1,40 @@
-using SimpleInputNamespace;
 using UnityEngine;
 
-namespace Platformer
+public abstract class BaseAnimationController : MonoBehaviour
 {
-    public abstract class BaseAnimationController : MonoBehaviour
+    protected Animator animator;
+
+    private const string SPEED = "Speed";
+    private const string DEATH = "Death";
+    private static readonly int Speed = Animator.StringToHash(SPEED);
+    private static readonly int Death = Animator.StringToHash(DEATH);
+
+
+    private void Awake()
     {
-        protected Animator _animator;
-
-        private const string SPEED = "Speed";
-        private const string DEATH = "Death";
-        private static readonly int Speed = Animator.StringToHash(SPEED);
-        private static readonly int Death = Animator.StringToHash(DEATH);
-
-
-        private void Awake()
+        animator = GetComponent<Animator>();
+    }
+        
+        
+    public void SetWalkDirection(bool isLeft)
+    {
+        if (isLeft)
         {
-            _animator = GetComponent<Animator>();
+            Vector2 localScale = gameObject.transform.localScale;
+            localScale.x = 1;
+            transform.localScale = localScale;
         }
-        
-        
-        public void SetWalkDirection(bool isLeft)
+        else
         {
-            if (isLeft)
-            {
-                Vector2 localScale = gameObject.transform.localScale;
-                localScale.x = 1;
-                transform.localScale = localScale;
-            }
-            else
-            {
-                Vector2 localScale = gameObject.transform.localScale;
-                localScale.x = -1;
-                transform.localScale = localScale;
-            }
+            Vector2 localScale = gameObject.transform.localScale;
+            localScale.x = -1;
+            transform.localScale = localScale;
         }
+    }
         
         
-        public void SetDeath()
-        {
-            _animator.SetBool("Death", true);
-        }
+    public void SetDeath()
+    {
+        animator.SetBool("Death", true);
     }
 }

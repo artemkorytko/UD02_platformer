@@ -1,9 +1,6 @@
 using UnityEngine;
 
-namespace Platformer
+public class SaveSystem : MonoBehaviour
 {
-    public class SaveSystem : MonoBehaviour
-    {
         
-    }
 }

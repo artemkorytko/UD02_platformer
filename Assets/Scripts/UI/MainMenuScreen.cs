@@ -1,48 +1,49 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class MainMenuScreen : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Text _goldCounterText;
-    [SerializeField] private Text _bronzeCounterText;
-    [SerializeField] private Text _silverCounterText;
-    [SerializeField] public List<Button> startLevelButtons;
-
-    public Text GoldCounterText
+    public class MainMenuScreen : MonoBehaviour
     {
-        get => _goldCounterText;
-        set => _goldCounterText.text = value.ToString();
-    }
+        [SerializeField] private Text goldCounterText;
+        [SerializeField] private Text bronzeCounterText;
+        [SerializeField] private Text silverCounterText;
+        [SerializeField] public List<Button> startLevelButtons;
 
-    public Text BronzeCounterText
-    {
-        get => _bronzeCounterText;
-        set => _bronzeCounterText.text = value.ToString();
-    }
-
-    public Text SilverCounterText
-    {
-        get => _silverCounterText;
-        set => _silverCounterText.text = value.ToString();
-    }
-
-
-    private void Awake()
-    {
-        for (int i = 0; i < startLevelButtons.Count; i++)
+        public Text GoldCounterText
         {
-            startLevelButtons[i].onClick.AddListener(ButtonUsed(startLevelButtons[i]));
+            get => goldCounterText;
+            set => goldCounterText.text = value.ToString();
         }
-    }
-    public UnityAction ButtonUsed(Button button)
-    {
-        button.GetComponent<Text>().text = ("Retry");
-        return null;
-    }
+
+        public Text BronzeCounterText
+        {
+            get => bronzeCounterText;
+            set => bronzeCounterText.text = value.ToString();
+        }
+
+        public Text SilverCounterText
+        {
+            get => silverCounterText;
+            set => silverCounterText.text = value.ToString();
+        }
+
+
+        private void Awake()
+        {
+            for (int i = 0; i < startLevelButtons.Count; i++)
+            {
+                startLevelButtons[i].onClick.AddListener(ButtonUsed(startLevelButtons[i]));
+            }
+        }
+        public UnityAction ButtonUsed(Button button)
+        {
+            button.GetComponent<Text>().text = ("Retry");
+            return null;
+        }
     
 
+    }
 }

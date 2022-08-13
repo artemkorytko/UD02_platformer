@@ -1,16 +1,16 @@
-using UnityEngine;
+using Platformer;
 
-namespace Platformer
+namespace Player
 {
     public class PlayerAnimationController : EnemyAnimationController
     {
         private const string JUMP = "Jump";
         
-        //private static readonly int Jump1 = Animator.StringToHash(JUMP);
+        //private static readonly int Jump1 = _animator.StringToHash(JUMP);
 
         public void DoJump()
         {
-            _animator.SetTrigger(JUMP);
+            animator.SetTrigger(JUMP);
         }
     }
 }

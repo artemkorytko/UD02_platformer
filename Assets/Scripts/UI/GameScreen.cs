@@ -1,30 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameScreen : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private Text _goldCounterText;
-    [SerializeField] private Text _bronzeCounterText;
-    [SerializeField] private Text _silverCounterText;
-
-    
-    public Text GoldCounterText
+    public class GameScreen : MonoBehaviour
     {
-        get => _goldCounterText;
-        set => _goldCounterText.text = value.ToString();
-    }
+        [SerializeField] private Text goldCounterText;
+        [SerializeField] private Text bronzeCounterText;
+        [SerializeField] private Text silverCounterText;
+        [SerializeField] private Joystick playerWalkJoystick;
+        [SerializeField] private Button playerJumpButton;
+        
+        
+        
+        public Text GoldCounterText
+        {
+            get => goldCounterText;
+            set => goldCounterText.text = value.ToString();
+        }
 
-    public Text BronzeCounterText
-    {
-        get => _bronzeCounterText;
-        set => _bronzeCounterText.text = value.ToString();
-    }
+        public Text BronzeCounterText
+        {
+            get => bronzeCounterText;
+            set => bronzeCounterText.text = value.ToString();
+        }
 
-    public Text SilverCounterText
-    {
-        get => _silverCounterText;
-        set => _silverCounterText.text = value.ToString();
+        public Text SilverCounterText
+        {
+            get => silverCounterText;
+            set => silverCounterText.text = value.ToString();
+        }
+
+        public Joystick PlayerWalkJoystick => playerWalkJoystick;
+
+        public Button PlayerJumpButton => playerJumpButton;
     }
 }

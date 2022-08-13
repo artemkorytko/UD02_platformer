@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Platformer
+namespace Player
 {
     public class Player : MonoBehaviour
     {

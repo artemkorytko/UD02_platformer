@@ -1,5 +1,5 @@
 using System;
-using Platformer;
+using UI;
 using UnityEngine;
 
 namespace Platformer
