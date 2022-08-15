@@ -11,12 +11,12 @@ namespace UI
         [SerializeField] public GameScreen gameScreen;
         [SerializeField] private GameObject winScreen;
         [SerializeField] private GameObject failScreen;
-        private Button _playerJumpButton;      // СДЕЛАТЬ ZENJECT, убогая зависимомть
-        private Joystick _playerJoystick;
+        [SerializeField] private Button playerJumpButton;      // СДЕЛАТЬ ZENJECT, убогая зависимомть
+        [SerializeField] private Joystick playerJoystick;
         private GameObject _currentScreen;
         private GameManager _gameManager;
 
-        public Button PlayerJumpButton => _playerJumpButton;
+        public Button PlayerJumpButton => playerJumpButton;
 
         public Joystick PlayerJoystick { get; private set; }
 
@@ -27,17 +27,7 @@ namespace UI
             _gameManager.OnCoinCountChanged += ChangeMoneyCount;
         }
 
-        private void Start()
-        {
-            _playerJoystick = gameScreen.PlayerWalkJoystick;
-            _playerJumpButton = gameScreen.PlayerJumpButton;
-            if (_playerJoystick == null)
-            {
-                Debug.Log("После инициализации пиздец");
-            }
-        }
-        
-        
+
         private void EnableCurrentScreen()
         {
             if (_currentScreen == null) return;

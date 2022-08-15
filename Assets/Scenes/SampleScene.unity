@@ -1915,6 +1915,8 @@ MonoBehaviour:
   gameScreen: {fileID: 122443623}
   winScreen: {fileID: 1583377045}
   failScreen: {fileID: 1652805532}
+  playerJumpButton: {fileID: 1193566207}
+  playerJoystick: {fileID: 1755006820}
 --- !u!1 &1176238521
 GameObject:
   m_ObjectHideFlags: 0

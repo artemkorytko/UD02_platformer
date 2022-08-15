@@ -1,40 +1,40 @@
 using System;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
-namespace Platformer
+namespace Enemy
 {
     public class EnemyMovement : BaseMovementController
     {
         private Transform _leftWall;
         private Transform _rightWall;
         private bool _isAlive;
-        
+
         private void Start()
         {
-            _isAlive = GetComponent<Enemy>().isAlive;
+            _isAlive = GetComponent<Platformer.Enemy>().isAlive;
             FindWalls();
-            gameObject.transform.position = _leftWall.position + (_rightWall.position - _leftWall.position)/2;
+            gameObject.transform.position = _leftWall.position + (_rightWall.position - _leftWall.position) / 2;
             Movement();
         }
-        
+
 
         protected override void Movement()
         {
-             var sequence = DOTween.Sequence();
-             float time = Vector3.Distance(_leftWall.position, _rightWall.position) / speed;
-             bool isLeft = false;
-             
-             sequence.AppendCallback(() => isLeft = false);
-             sequence.AppendCallback(() => _animationController.SetWalkDirection(isLeft));
-             sequence.Append(transform.DOMove(_rightWall.position, time).SetEase(Ease.Linear));
-             sequence.AppendCallback(() => isLeft = true);
-             sequence.AppendCallback(() => _animationController.SetWalkDirection(isLeft));
-             sequence.Append(transform.DOMove(_leftWall.position, time).SetEase(Ease.Linear));
-             if (_isAlive)
-             {
-                 sequence.OnComplete(() => Movement());
-             }
+            var sequence = DOTween.Sequence();
+            float time = Vector3.Distance(_leftWall.position, _rightWall.position) / speed;
+            bool isLeft = false;
+
+            sequence.AppendCallback(() => isLeft = false);
+            sequence.AppendCallback(() => _animationController.SetWalkDirection(isLeft));
+            sequence.Append(transform.DOMove(_rightWall.position, time).SetEase(Ease.Linear));
+            sequence.AppendCallback(() => isLeft = true);
+            sequence.AppendCallback(() => _animationController.SetWalkDirection(isLeft));
+            sequence.Append(transform.DOMove(_leftWall.position, time).SetEase(Ease.Linear));
+            if (_isAlive)
+            {
+                sequence.OnComplete(() => Movement());
+            }
         }
 
 
@@ -65,5 +65,3 @@ namespace Platformer
         }
     }
 }
-
-
